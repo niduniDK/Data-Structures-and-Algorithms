@@ -28,46 +28,48 @@ struct Tree{
 
     Tree(Node* root){this->root=root;}
     Tree(){root = nullptr;}
+
+    void inorder_traverse(){
+        if(!this->root) return;
+
+        Tree* left = new Tree();
+        Tree* right = new Tree();
+        left->root = this->root->left;
+        right->root = this->root->right;
+
+        left->inorder_traverse();
+        cout<<this->root->value<<" ";
+        right->inorder_traverse();
+    }
+
+    void preorder_traversal(){
+        if(!this->root) return;
+
+        Tree* left = new Tree();
+        Tree* right = new Tree();
+        left->root = this->root->left;
+        right->root = this->root->right;
+
+        cout<<this->root->value<<" ";
+        left->preorder_traversal();
+        right->preorder_traversal();
+    }
+
+    void postorder_traversal(){
+        if(!this->root) return;
+
+        Tree* left = new Tree();
+        Tree* right = new Tree();
+        left->root = this->root->left;
+        right->root = this->root->right;
+
+        left->postorder_traversal();
+        right->postorder_traversal();
+        cout<<this->root->value<<" ";
+    }
 };
 
-void inorder_traverse(Tree* tree){
-    if(!tree->root) return;
 
-    Tree* left = new Tree();
-    Tree* right = new Tree();
-    left->root = tree->root->left;
-    right->root = tree->root->right;
-
-    inorder_traverse(left);
-    cout<<tree->root->value<<" ";
-    inorder_traverse(right);
-}
-
-void preorder_traversal(Tree* tree){
-    if(!tree->root) return;
-
-    Tree* left = new Tree();
-    Tree* right = new Tree();
-    left->root = tree->root->left;
-    right->root = tree->root->right;
-
-    cout<<tree->root->value<<" ";
-    preorder_traversal(left);
-    preorder_traversal(right);
-}
-
-void postorder_traversal(Tree* tree){
-    if(!tree->root) return;
-
-    Tree* left = new Tree();
-    Tree* right = new Tree();
-    left->root = tree->root->left;
-    right->root = tree->root->right;
-
-    postorder_traversal(left);
-    postorder_traversal(right);
-    cout<<tree->root->value<<" ";
-}
 
 int main()
 {
@@ -82,15 +84,15 @@ int main()
 
     Tree* tree = new Tree(root);
     cout<<"Inorder Traversal: "<<endl;
-    inorder_traverse(tree);
+    tree->inorder_traverse();
     cout<<'\n'<<endl;
 
     cout<<"Preorder Traversal: "<<endl;
-    preorder_traversal(tree);
+    tree->preorder_traversal();
     cout<<'\n'<<endl;
 
     cout<<"Postorder Traversal: "<<endl;
-    postorder_traversal(tree);
+    tree->postorder_traversal();
     cout<<endl;
 
     return 0;
