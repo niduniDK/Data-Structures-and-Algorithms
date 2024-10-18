@@ -253,6 +253,8 @@ int main()
     cout<<"Postorder Traversal: "<<endl;
     bst->postorder_traversal();
     cout<<endl;
+    
+    cout<<"This is a BST: "<<bst->check_BST()<<endl;
 
     return 0;
 }
